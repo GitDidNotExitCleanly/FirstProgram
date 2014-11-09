@@ -1,0 +1,16 @@
+@charset "utf-8";
+/* CSS Document */
+
+#mainWindow {
+	margin: 10px auto;
+	background:url(../Images/bg.jpg) no-repeat;
+	width:960px;
+	height:600px;
+	overflow:scroll;
+}
+
+#canvas {
+	display:block;
+	margin: 0 auto;
+	border:#000 solid;
+}
