@@ -114,6 +114,18 @@ $(document).ready(function(e) {
 			$('#step3').fadeIn('fast');		
 		});
 	});
+	$('#step3 button[name="save"]').click(function() {
+		// download
+		var image = canvas.toDataURL("image/jpeg").replace			("image/jpeg", "image/octet-stream");
+		var filename =  'newImage_' + (new Date()).getTime() + '.jpg';
+		
+		var save_link = document.createElementNS('http://www.w3.org/1999/xhtml', 'a');
+    		save_link.href = image;
+    		save_link.download = filename;
+    		var event = document.createEvent('MouseEvents');
+    		event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+    		save_link.dispatchEvent(event);
+	});
 	$('div.step button[name="previous"]').click(function() {
 		if (step == 2) {
 			step = 1;
