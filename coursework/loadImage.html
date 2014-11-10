@@ -5,7 +5,6 @@
 <title>Untitled Document</title>
 <script type="text/javascript" src="JavaScript/jquery-1.11.1.min.js"></script>
 <script type="text/javascript" src="JavaScript/loadImage.js"></script>
-<link href="CSS/reset.css" rel="stylesheet" type="text/css" />
 <link href="CSS/loadImage.css" rel="stylesheet" type="text/css" />
 </head>
 
@@ -18,19 +17,48 @@
 <div class="step" id="step1">
 	<p>step 1</p>
     <fieldset>
-    <button name="next">Next &gt;&gt;</button>
+    	<a href="javascript:void(0);" name="next" class="button">Next</a>
     </fieldset>
 </div>
 <div class="step" id="step2">
-	<p>step 2</p>
+
+
+
+	<div class="box">
+        <ul id="tabMenu">
+          <li class="posts selected"><img src="Images/icon.jpg" /></li>
+          <li class="comments"><img src="Images/icon.jpg" /></li>
+          <li class="category"><img src="Images/icon.jpg" /></li>
+        </ul>
+
+        <div class="boxBody">
+          
+          <div id="posts" class="parent show">
+            <div>111111111111111111111111111111111111111</div>
+          </div>  
+          
+          <div id="comments" class="parent">
+            <div>222222222222222222222222222222222222222</div>
+          </div>
+          
+          <div id="category" class="parent">
+            <div>333333333333333333333333333333333333333</div>  
+          </div>
+                 
+        </div>
+	</div>
+
+
     <fieldset>
-    <button name="previous">&lt;&lt; Prev</button><button name="next">Next &gt;&gt;</button>
+        <a href="javascript:void(0);" name="previous" class="button">&lt;&lt; Prev</a>
+        <a href="javascript:void(0);" name="next" class="button">Next &gt;&gt;</a>
     </fieldset>
 </div>
 <div class="step" id="step3">
 	<p>step 3</p>
     <fieldset>
-    <button name="previous">&lt;&lt; Prev</button><button name="save">Download as Image</button>
+        <a href="javascript:void(0);" name="previous" class="button">&lt;&lt; Prev</a>
+        <a href="javascript:void(0);" name="save" class="button">Download Image</a>
     </fieldset>
 </div>
 </section>
