@@ -4,7 +4,7 @@
 #display {
 	margin: 10px auto;
 	background:url(../Images/bg.jpg) no-repeat;
-	width:960px;
+	width:1024px;
 	height:600px;
 	overflow:hidden;
 	position:relative;
@@ -21,7 +21,11 @@
 
 div.step {
 	display:none;
-	width:960px;
+	width:1024px;
 	height:400px;
 	margin: 20px auto 0;
+}
+
+div.step > * {
+	margin-left: 20px;
 }

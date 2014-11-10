@@ -1,13 +1,16 @@
 // JavaScript Document
 $(document).ready(function(e) {
     
-	var MAX_WIDTH = 700;
+	var MAX_WIDTH = 764;
 	var MIN_WIDTH = 200;
 	
 	var canvas = document.getElementById("canvas");
 	var context = canvas.getContext("2d");
 	var img = new Image();
-	img.src = "./Images/test.jpg";
+	img.src = "./Images/test2.jpg";
+	var originalWidth = 0;
+	var originalHeight = 0;
+	var step = 1;
 	
 	img.onload = function() {
 		if (img.width < MIN_WIDTH) {
@@ -18,41 +21,42 @@ $(document).ready(function(e) {
 			img.height *= MAX_WIDTH/img.width;
 			img.width = MAX_WIDTH;
 		}
+		originalWidth = img.width;
+		originalHeight = img.height;
 		canvas.width = img.width;
 		canvas.height = img.height;
-		var top = (parseInt($('#canvas').parent().css('height')) - canvas.height)/2;
-		var left = (parseInt($('#canvas').parent().css('width')) - canvas.width)/2
-		$('#canvas').css({
-			'top' : top+'px',
-			'left' : left+'px'})
-			.addClass('draggable');
+		centre();
+		$('#canvas').addClass('draggable');
 		context.drawImage(img,0,0,img.width,img.height);
 		$('#step1').show();
 		
+	// dealing with size changing
 		canvas.onmousewheel = function(event) {
-			event.preventDefault(); 
-			context.clearRect(0,0,img.width,img.height);
-			var resize = event.wheelDelta / 120;
-			var ratio = img.width / img.height;
-			if (resize > 0) {
-				if (img.width < MAX_WIDTH) {
-					img.height =img.height + resize*4;
-					img.width =img.width + resize*ratio*4;
+			event.preventDefault();
+			if (step == 1) {
+				context.clearRect(0,0,img.width,img.height);
+				var resize = event.wheelDelta / 120;
+				var ratio = originalWidth / originalHeight;
+				if (resize > 0) {
+					if (img.width < MAX_WIDTH) {
+						img.height =img.height + resize*4;
+						img.width =img.width + resize*ratio*4;
+					}
 				}
-			}
-			else {
-				if (img.width > MIN_WIDTH) {
-					img.height =img.height + resize*4;
-					img.width =img.width + resize*ratio*4;	
+				else {
+					if (img.width > MIN_WIDTH) {
+						img.height =img.height + resize*4;
+						img.width =img.width + resize*ratio*4;	
+					}
 				}
+				canvas.width = img.width;
+				canvas.height = img.height;
+				context.drawImage(img,0,0,img.width,img.height);
 			}
-			canvas.width = img.width;
-			canvas.height = img.height;
-			context.drawImage(img,0,0,img.width,img.height);
-			
 		};
 	};
 	
+	// dealing with dragging
 	var dragging = false;
     var iX, iY;
 	$('#canvas').mousedown(function(e) {
@@ -93,8 +97,53 @@ $(document).ready(function(e) {
        e.cancelBubble = true;
     });
 	 
-	$('#step1 fieldset').first().click(function() {
-			
+
+	// dealing with buttons
+	$('#step1 button[name="next"]').click(function() {
+		step = 2;
+		centre();
+		$('#step1').fadeOut('fast',function(event) {
+			$('#step2').fadeIn('fast');		
+		});
 	});
+	$('#step2 button[name="next"]').click(function() {
+		step = 3;
+		centre();
+		$('#canvas').removeClass('draggable');
+		$('#step2').fadeOut('fast',function(event) {
+			$('#step3').fadeIn('fast');		
+		});
+	});
+	$('div.step button[name="previous"]').click(function() {
+		if (step == 2) {
+			step = 1;
+			centre();
+			context.drawImage(img,0,0,img.width,img.height);
+			$('#step2').fadeOut('fast',function(e) {
+				$('#step1').fadeIn('fast');	
+			});
+		}
+		if (step == 3) {
+			step = 2;
+			centre();
+			$('#canvas').addClass('draggable');
+			$('#step3').fadeOut('fast',function(e) {
+				$('#step2').fadeIn('fast');	
+			});	
+		}
+	});
+	
+	
+	
+	
+	
+	function centre() {
+		var top = (parseInt($('#canvas').parent().css('height')) - canvas.height)/2;
+		var left = (parseInt($('#canvas').parent().css('width')) - canvas.width)/2
+		$('#canvas').css({
+			'top' : top+'px',
+			'left' : left+'px'
+		});
+	}
 });
 
