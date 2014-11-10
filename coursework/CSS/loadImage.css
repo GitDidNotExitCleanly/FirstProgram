@@ -1,16 +1,27 @@
 @charset "utf-8";
 /* CSS Document */
 
-#mainWindow {
+#display {
 	margin: 10px auto;
 	background:url(../Images/bg.jpg) no-repeat;
 	width:960px;
 	height:600px;
-	overflow:scroll;
+	overflow:hidden;
+	position:relative;
 }
 
 #canvas {
-	display:block;
-	margin: 0 auto;
-	border:#000 solid;
+	position:absolute;
+	border:#000 dashed 2px;
+}
+
+.draggable {
+	cursor:move;	
+}
+
+div.step {
+	display:none;
+	width:960px;
+	height:400px;
+	margin: 20px auto 0;
 }
