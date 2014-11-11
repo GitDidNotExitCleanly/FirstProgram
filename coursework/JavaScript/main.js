@@ -163,7 +163,7 @@ $(document).ready(function(e) {
 	//Get all the LI from the #tabMenu UL
   $('#tabMenu li').click(function(){
     
-   //perform the actions when it's not selected
+   	//perform the actions when it's not selected
    	if (!$(this).hasClass('selected')) {    
            
 	   //remove the selected class from all LI    
@@ -173,14 +173,36 @@ $(document).ready(function(e) {
 	   $(this).addClass('selected');
 	    
 	   //Hide all the DIV in .boxBody
-	   $('.boxBody div.parent').hide('1000');
+	   $('.boxBody div.parent').slideUp(200);
 	    
 	   //Look for the right DIV in boxBody according to the Navigation UL index, therefore, the arrangement is very important.
-	   $('.boxBody div.parent:eq(' + $('#tabMenu > li').index(this) + ')').show('1000');
-	    
+	   $('.boxBody div.parent:eq(' + $('#tabMenu > li').index(this) + ')').slideDown(200); 
 	}
- 
+
   });
+  
+  // Text 
+  $('#font_size').change(function() {
+	  var oldSize = parseInt($('#text p').css('font-size'));
+	  var ratio = ($(this).val() / oldSize);
+	  var oldMarginTop = parseInt($('#text p').css('margin-top'));
+	  $('#text p').css({
+		  'font-size' : $(this).val()+'px',
+		  'margin-top' : oldMarginTop*(1/ratio)
+	  });
+  });
+  $('#font_style').change(function() {
+	  $('#text p').css('font-style',$(this).val());
+  });
+  $('#colour').change(function() {
+	  $('#text p').css('color',$(this).val());
+  });
+  $('.content button').click(function() {
+	  if ($('#text input').val().length > 0) {
+		$('#text p').text($('#text input').val());
+	  }  
+  });
+	
 
 	
 	

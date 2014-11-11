@@ -62,7 +62,8 @@ li.selected {
 }
 
 .box {
-	background-color:#CCC;	
+	background-color:#CCC;
+	height: 250px;	
 }
 #tabMenu {
 	background-color:#FFF;
@@ -79,6 +80,34 @@ div.step fieldset {
 	margin-top:5px;
 	text-align:center;
 	border:none;
+}
+
+#text {
+	text-align:center;
+	padding: 20px 0;
+}
+
+#text div.preview {
+	height:125px;
+	overflow:hidden;
+}
+
+#text p {
+	display:inline-block;
+	background-color:#FFF;
+	font: 18px normal;
+	color:#F00;
+	margin: 0 auto;
+	margin-top: 60px;
+}
+
+#text section {
+	display:inline;
+	margin: 0 10px;
+}
+
+div.step fieldset {
+	margin-top:10px;	
 }
 
 /* buttons */

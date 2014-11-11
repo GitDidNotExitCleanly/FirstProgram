@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Untitled Document</title>
+<script type="text/javascript" src="JavaScript/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="JavaScript/main.js"></script>
+<link href="CSS/main.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<header></header>
+<section>
+<div id="display">
+	<canvas id="canvas" width="960" height="550"></canvas>
+</div>
+<div class="step" id="step1">
+	<p>step 1</p>
+    <fieldset>
+    	<a href="javascript:void(0);" name="next" class="button">Next</a>
+    </fieldset>
+</div>
+<div class="step" id="step2">
+
+
+
+	<div class="box">
+        <ul id="tabMenu">
+          <li class="selected"><img src="Images/icon.jpg" /></li>
+          <li><img src="Images/icon.jpg" /></li>
+          <li><img src="Images/icon.jpg" /></li>
+        </ul>
+
+        <div class="boxBody">
+          
+          <div id="text" class="parent show">
+            <div>
+            	
+                <section>
+                	<label for="font_size">Font Size: </label>
+               		<select id="font_size">
+                        <option value ="18">18</option>
+                        <option value ="28">28</option>
+                        <option value ="48">48</option>
+                        <option value ="72">72</option>
+                    </select>
+                </section>
+                <section>
+                	<label for="font_style">Font Style: </label>
+               		<select id="font_style">
+                    	<option value ="normal">Normal</option>
+                        <option value ="italic">Italic</option>
+                        <option value ="oblique">Oblique</option>
+                    </select>
+                </section>
+                <section>
+                	<label for="colour">Colour: </label>
+               		<select id="colour">
+                    	<option value ="red">Red</option>
+                        <option value ="yellow">Yellow</option>
+                        <option value ="blue">Blue</option>
+                        <option value ="green">Green</option>
+                    </select>
+                </section>
+                <div class="preview">
+                	<p></p>
+                </div>
+                <div class="content">
+                	<label>Text: </label>
+                    <input type="text" maxlength="18" placeholder=" Input Here" />
+                    <button>Preview</button>
+                </div>
+                
+            </div>
+          </div>  
+          
+          <div id="comments" class="parent">
+            <div>222222222222222222222222222222222222222</div>
+          </div>
+          
+          <div id="category" class="parent">
+            <div>333333333333333333333333333333333333333</div>  
+          </div>
+                 
+        </div>
+	</div>
+
+
+    <fieldset>
+        <a href="javascript:void(0);" name="previous" class="button">&lt;&lt; Prev</a>
+        <a href="javascript:void(0);" name="next" class="button">Next &gt;&gt;</a>
+    </fieldset>
+</div>
+<div class="step" id="step3">
+	<p>step 3</p>
+    <fieldset>
+        <a href="javascript:void(0);" name="previous" class="button">&lt;&lt; Prev</a>
+        <a href="javascript:void(0);" name="save" class="button">Download Image</a>
+    </fieldset>
+</div>
+</section>
+<footer></footer>
+</body>
+</html>
