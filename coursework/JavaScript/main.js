@@ -1,6 +1,6 @@
-// JavaScript Document
+  // JavaScript Document
 $(document).ready(function(e) {
-    function centre() {
+	function centre() {
 		var top = (parseInt($('#canvas').parent().css('height')) - canvas.height)/2;
 		var left = (parseInt($('#canvas').parent().css('width')) - canvas.width)/2
 		$('#canvas').css({
@@ -8,6 +8,14 @@ $(document).ready(function(e) {
 			'left' : left+'px'
 		});
 	}
+	
+	function addEditingPrompt() {
+	  $('<div id="editingPrompt" style="width: 1024px; height: 600px;background-color: #000; color: #FFF; position: absolute; left: 0px; top: 0px; text-align: center;z-index: 1;filter:alpha(opacity:70);opacity:0.7;"> <p>Editing . . .</p></div>').appendTo($('#display'));	
+  }
+  
+  function removeEditingPrompt() {
+	  $('#editingPrompt').remove();
+  }
 	
 	var MAX_WIDTH = 764;
 	var MIN_WIDTH = 200;
@@ -65,23 +73,24 @@ $(document).ready(function(e) {
 		};
 	};
 	
-	// dealing with dragging
+	// dealing with image dragging
 	var dragging = false;
-    var iX, iY;
+	var editing = false;
+	var iX, iY;
 	$('#canvas').mousedown(function(e) {
-		if ($(this).hasClass('draggable')) {
+		if ($(this).hasClass('draggable') && !editing) {
 			dragging = true;
 			iX = e.clientX - this.offsetLeft;
-            iY = e.clientY - this.offsetTop;
-            this.setCapture && this.setCapture();
-            return false;
+			iY = e.clientY - this.offsetTop;
+			this.setCapture && this.setCapture();
+			return false;
 		}
 	});
 	document.onmousemove = function(e) {
-       if (dragging) {
-       		var e = e || window.event;
-            var oX = e.clientX - iX;
-            var oY = e.clientY - iY;
+	   if (dragging && !editing) {
+			var e = e || window.event;
+			var oX = e.clientX - iX;
+			var oY = e.clientY - iY;
 			if (oX < 0) {
 				oX = 1;
 			}
@@ -96,15 +105,15 @@ $(document).ready(function(e) {
 			if (oY > oY_max) {
 				oY = oY_max - 5;
 			}
-            $("#canvas").css({"left":oX + "px", "top":oY + "px"});
-            return false;
-       }
-    };
+			$("#canvas").css({"left":oX + "px", "top":oY + "px"});
+			return false;
+	   }
+	};
 	$(document).mouseup(function(e) {
-       dragging = false;
-       $("#canvas").releaseCapture();
-       e.cancelBubble = true;
-    });
+	   dragging = false;
+	   $("#canvas").releaseCapture();
+	   e.cancelBubble = true;
+	});
 	 
 
 	// dealing with buttons
@@ -120,6 +129,8 @@ $(document).ready(function(e) {
 		event.preventDefault();
 		step = 3;
 		centre();
+		editing = false;
+		removeEditingPrompt();
 		$('#canvas').removeClass('draggable');
 		$('#step2').fadeOut('fast',function(event) {
 			$('#step3').fadeIn('fast');		
@@ -128,21 +139,23 @@ $(document).ready(function(e) {
 	$('#step3 a[name="save"]').click(function(event) {
 		event.preventDefault();
 		// download
-		var image = canvas.toDataURL("image/jpeg").replace			("image/jpeg", "image/octet-stream");
+		var image = canvas.toDataURL("image/jpeg").replace("image/jpeg","image/octet-stream");
 		var filename =  'newImage_' + (new Date()).getTime() + '.jpg';
 		
 		var save_link = document.createElementNS('http://www.w3.org/1999/xhtml', 'a');
-    		save_link.href = image;
-    		save_link.download = filename;
-    		var event = document.createEvent('MouseEvents');
-    		event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-    		save_link.dispatchEvent(event);
+			save_link.href = image;
+			save_link.download = filename;
+			var event = document.createEvent('MouseEvents');
+			event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+			save_link.dispatchEvent(event);
 	});
 	$('div.step a[name="previous"]').click(function(event) {
 		event.preventDefault();
 		if (step == 2) {
 			step = 1;
 			centre();
+			editing = false;
+			removeEditingPrompt();
 			context.drawImage(img,0,0,img.width,img.height);
 			$('#step2').fadeOut('fast',function(e) {
 				$('#step1').fadeIn('fast');	
@@ -151,6 +164,8 @@ $(document).ready(function(e) {
 		if (step == 3) {
 			step = 2;
 			centre();
+			editing = false;
+			removeEditingPrompt();
 			$('#canvas').addClass('draggable');
 			$('#step3').fadeOut('fast',function(e) {
 				$('#step2').fadeIn('fast');	
@@ -158,28 +173,32 @@ $(document).ready(function(e) {
 		}
 	});
 	
-	// dealing with Step 2 --- image decoration
+	// dealing with Step 2 Tab --- image decoration
 	
 	//Get all the LI from the #tabMenu UL
   $('#tabMenu li').click(function(){
-    
-   	//perform the actions when it's not selected
-   	if (!$(this).hasClass('selected')) {    
-           
+	
+	//perform the actions when it's not selected
+	if (!$(this).hasClass('selected')) {    
+		   
 	   //remove the selected class from all LI    
 	   $('#tabMenu li').removeClass('selected');
-	    
-       //Reassign the LI
+		
+	   //Reassign the LI
 	   $(this).addClass('selected');
-	    
+	   
+	   editing  = false;
+	   removeEditingPrompt();
+		
 	   //Hide all the DIV in .boxBody
 	   $('.boxBody div.parent').slideUp(200);
-	    
+		
 	   //Look for the right DIV in boxBody according to the Navigation UL index, therefore, the arrangement is very important.
 	   $('.boxBody div.parent:eq(' + $('#tabMenu > li').index(this) + ')').slideDown(200); 
 	}
 
   });
+  
   
   // Text 
   $('#font_size').change(function() {
@@ -197,12 +216,33 @@ $(document).ready(function(e) {
   $('#colour').change(function() {
 	  $('#text p').css('color',$(this).val());
   });
-  $('.content button').click(function() {
+  $('.content button[name="preview"]').click(function() {
 	  if ($('#text input').val().length > 0) {
-		$('#text p').text($('#text input').val());
-	  }  
+		  $('#text p').text($('#text input').val());
+	  }
   });
-	
+  
+  
+  // dealing with text adding
+  $('.content button[name="add"]').click(function() {
+	  if($('#text p').text().length > 0 && !editing) {
+		  editing = true;
+		  addEditingPrompt();
+	  }	
+  });
+  $('#canvas').click(function(event) {
+	  if (editing) {
+		  var x_axis = event.pageX - $(this).offset().left;
+		  var y_axis = event.pageY - $(this).offset().top;
+		  context.font = $('#text p').css('font-style')+" "+$('#text p').css('font-size')+" sans-serif" ;
+		  context.fillStyle = $('#text p').css('color');
+		  context.fillText($('#text p').text(),x_axis,y_axis);
+		  editing = false;
+		  removeEditingPrompt();
+	  }
+  });
+  
+  // dealing with shape adding
 
 	
 	

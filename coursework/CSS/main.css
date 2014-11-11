@@ -18,6 +18,7 @@ body {
 #canvas {
 	position:absolute;
 	border:#000 dashed 2px;
+	z-index: 9;
 }
 
 .draggable {
