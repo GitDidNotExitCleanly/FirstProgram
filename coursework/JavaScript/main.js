@@ -20,93 +20,9 @@ $(document).ready(function(e) {
 		$('#editingPrompt').remove();
 	}
 	
-	var dragging = false;
-	var editing = false;
-	var iX, iY;	
-	function Draw(arg) {
-	  if (arg.nodeType) {
-		  this.canvas = arg;
-	  } 
-	  else if (typeof arg == 'string') {
-		  this.canvas = document.getElementById(arg);
-	  } 
-	  else {
-		  return;
-	  }
-	  this.init();
-	}
-	Draw.prototype = {
-		init: function() {
-			var that = this;
-			if (!this.canvas.getContext) {
-				return;
-			}
-			this.context = this.canvas.getContext('2d');
-			this.canvas.onselectstart = function () {
-				return false;
-			};
-			this.canvas.onmousedown = function(event) {
-				if (editing && $('#tabMenu li[value="paint"]').hasClass('selected')) {
-					that.context.lineWidth = $('#paint select').val();
-					that.drawBegin(event);
-				}
-			};
-		},
-		drawBegin: function(e) {
-			var that = this,
-				stage_info = this.canvas.getBoundingClientRect();
-			window.getSelection ? window.getSelection().removeAllRanges() :
-									document.selection.empty();
-			this.context.moveTo(
-				e.clientX - stage_info.left,
-				e.clientY - stage_info.top
-			);
-			document.onmousemove = function(event) {
-				that.drawing(event);
-			};
-			document.onmouseup = this.drawEnd;	
-		},
-		drawing: function(e) {
-			var stage_info = this.canvas.getBoundingClientRect();
-			this.context.lineTo(
-				e.clientX - stage_info.left,
-				e.clientY - stage_info.top
-			);
-			this.context.stroke();
-		},
-		drawEnd: function() {
-			document.onmousemove = function(e) {
-			  if (dragging) {
-				  var e = e || window.event;
-				  var oX = e.clientX - iX;
-				  var oY = e.clientY - iY;
-				  if (oX < 0) {
-					  oX = 1;
-				  }
-				  var oX_max = parseInt($('#canvas').parent().css('width')) - canvas.width;
-				  if (oX > oX_max) {
-					  oX = oX_max - 5;
-				  }
-				  if (oY < 0) {
-					  oY = 1;
-				  }
-				  var oY_max = parseInt($('#canvas').parent().css('height')) - canvas.height;
-				  if (oY > oY_max) {
-					  oY = oY_max - 5;
-				  }
-				  $("#canvas").css({"left":oX + "px", "top":oY + "px"});
-				  return false;
-				}
-		  	};
-		  	document.onmouseup = function(e) {
-				dragging = false;
-			  	$("#canvas").releaseCapture();
-			  	e.cancelBubble = true;		
-		  	};
-		}
-	};
-	
 	// dealing with image dragging
+	var dragging = false;
+	var iX, iY;
 	$('#canvas').mousedown(function(e) {
 		if ($(this).hasClass('draggable')) {
 			dragging = true;
@@ -116,7 +32,7 @@ $(document).ready(function(e) {
 			return false;
 		}		
 	});
-	document.onmousemove = function(e) {
+	$(document).mousemove(function(e) {
 		if (dragging) {
 			var e = e || window.event;
 			var oX = e.clientX - iX;
@@ -137,15 +53,77 @@ $(document).ready(function(e) {
 			}
 			$("#canvas").css({"left":oX + "px", "top":oY + "px"});
 			return false;
+		}	
+	});
+	$(document).mouseup(function(e) {
+		if (dragging) {
+			dragging = false;
+			$("#canvas").releaseCapture();
+			e.cancelBubble = true;
+		}
+	});
+	
+	// dealing with freehand draw on canvas
+	var editing = false;
+	function Draw() {
+		this.canvas = canvas;
+		this.context = context;
+	  	this.init();
+	}
+	Draw.prototype = {
+		init: function() {
+			var that = this;
+			this.canvas.onselectstart = function () {
+				return false;
+			};
+			this.canvas.onmousedown = function(event) {
+				if (editing && $('#tabMenu li[value="paint"]').hasClass('selected')) {
+					that.drawBegin(event);
+				}
+			};
+		},
+		drawBegin: function(e) {
+			var that = this,
+				stage_info = this.canvas.getBoundingClientRect();
+			window.getSelection ? window.getSelection().removeAllRanges() :
+									document.selection.empty();
+			
+			this.context.lineWidth = $('#paint select').val();
+			this.context.strokeStyle = $('#paint input[name="selected"]').css('background-color');
+			
+			that.context.beginPath();
+			this.context.moveTo(
+				e.clientX - stage_info.left,
+				e.clientY - stage_info.top
+			);
+			
+			document.onmousemove = function(event) {
+				that.drawing(event);
+			};
+			
+			document.onmouseup = function() {
+				that.context.closePath();
+				document.onmousemove = document.onmouseup = null;
+			};
+		},
+		drawing: function(e) {
+			var stage_info = this.canvas.getBoundingClientRect();
+			this.context.lineTo(
+				e.clientX - stage_info.left,
+				e.clientY - stage_info.top
+			);
+			this.context.stroke();
 		}
 	};
-	document.onmouseup = function(e) {
-		dragging = false;
-	   	$("#canvas").releaseCapture();
-	   	e.cancelBubble = true;		
-	};
-
+	
+	
+			
+	/*********************************/
+	/* 			Step 1				 */
+	/*********************************/
+	
 	// initial image display
+	
 	var MAX_WIDTH = 764;
 	var MIN_WIDTH = 200;
 	
@@ -173,8 +151,9 @@ $(document).ready(function(e) {
 		context.drawImage(img,0,0,img.width,img.height);
 		$('#step1').show();
 		
-		// dealing with size changing
-		// step 1
+		
+		// dealing with resizable canvas
+		
 		canvas.onmousewheel = function(event) {
 			event.preventDefault();
 			if (step == 1) {
@@ -202,7 +181,11 @@ $(document).ready(function(e) {
 	
 	
 	
-	// dealing with Step 2 Tab --- image decoration
+	/*********************************/
+	/* 			Step 2				 */
+	/*********************************/
+	
+	/*				Tab				*/
 	
 	//Get all the LI from the #tabMenu UL
   $('#tabMenu li').click(function(){
@@ -234,7 +217,9 @@ $(document).ready(function(e) {
   });
   
  
-  // Text 
+  /*				Text				*/
+  
+  // text options and preview
   $('#font_size').change(function() {
 	  var oldSize = parseInt($('#text p').css('font-size'));
 	  var ratio = ($(this).val() / oldSize);
@@ -256,7 +241,7 @@ $(document).ready(function(e) {
 	  }
   });
   
-  // dealing with text adding
+  // text add
   $('.content button[name="add"]').click(function() {
 	  if($('#text p').text().length > 0 && !editing) {
 		  editing = true;
@@ -276,31 +261,40 @@ $(document).ready(function(e) {
 		  removeEditingPrompt();
 	  }
   });
-  
-  	// dealing with shape adding
+  	
+  	
+	/*				Shape				*/
 
 	
-  	// dealing with drawing
+  	/*				Paint				*/
+	
+	// paint options and preview
+	
   	var previewCanvas = document.getElementById('previewCanvas');
 	var previewContext = previewCanvas.getContext("2d");
 	previewContext.font = "42px normal sans-serif";
 	previewContext.fillText("Preview",85,90);
   	$('#paint input').click(function() {
+		$('#paint input').attr('name','');
+		$(this).attr('name','selected');
 		previewContext.strokeStyle = $(this).css('background-color');
-		context.strokeStyle = $(this).css('background-color');
+		$('#paint button[name="preview"]').click();
 	});
 	$('#paint button[name="preview"]').click(function() {
 		previewContext.clearRect(0,0,previewCanvas.width,previewCanvas.height);
 		previewContext.lineWidth = 	$('#paint select').val();
 		previewContext.strokeRect(100,50,100,50);
 	});
+	
+	// paint start and stop
+	
 	$('#paint button[name="paint"]').click(function() {
 		editing = true;
 		$('#canvas').removeClass('draggable').addClass('editable');
 		$(this).hide();
 		$('#paint button[name="stop"]').show();
 		addEditingPrompt();
-		var draw = new Draw('canvas');
+		new Draw();
 	});
 	$('#paint button[name="stop"]').click(function() {
 		editing = false;
@@ -312,8 +306,12 @@ $(document).ready(function(e) {
 	
 	
 	
+	/*********************************/
+	/* 			Step 1 2 3			 */
+	/*********************************/
 	
-	// dealing with buttons
+	// dealing with buttons at the bottom
+	
 	$('#step1 a[name="next"]').click(function(event) {
 		event.preventDefault();
 		step = 2;
