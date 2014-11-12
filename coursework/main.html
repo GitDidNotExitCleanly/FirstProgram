@@ -26,15 +26,15 @@
 
 	<div class="box">
         <ul id="tabMenu">
-          <li class="selected"><img src="Images/icon.jpg" /></li>
-          <li><img src="Images/icon.jpg" /></li>
-          <li><img src="Images/icon.jpg" /></li>
+          <li class="selected" value="text"><img src="Images/icon.jpg" /></li>
+          <li value="shape"><img src="Images/icon.jpg" /></li>
+          <li value="paint"><img src="Images/icon.jpg" /></li>
         </ul>
 
         <div class="boxBody">
           
           <div id="text" class="parent show">
-            <div>
+            <div class="container">
             	
                 <section>
                 	<label for="font_size">Font Size: </label>
@@ -63,23 +63,50 @@
                     </select>
                 </section>
                 <div class="preview">
-                	<p></p>
+                	<p>Preview</p>
                 </div>
                 <div class="content">
                 	<label>Text: </label>
                     <input type="text" maxlength="18" placeholder=" Input Here" />
-                    <button name="preview">Preview</button><button name="add">Add</button>
+                    <button name="preview">Preview</button>
+                    <button name="add">Add</button>
                 </div>
                 
             </div>
           </div>  
           
           <div id="comments" class="parent">
-            <div>222222222222222222222222222222222222222</div>
+            <div  class="container">222222222222222222222222222222222222222</div>
           </div>
           
-          <div id="category" class="parent">
-            <div>333333333333333333333333333333333333333</div>  
+          <div id="paint" class="parent">
+            <div  class="container">
+            	<section>
+                    <label>Color：</label>
+                    <input class="i1" type="button" value="" />
+                    <input class="i2" type="button" value="" />
+                    <input class="i3" type="button" value="" />
+                    <input class="i4" type="button" value="" />
+                    <input class="i5" type="button" value="" />
+                    <input class="i6" type="button" value="" />
+                    <input class="i7" type="button" value="" />
+                    <input class="i8" type="button" value="" />
+                    <input class="i9" type="button" value="" />
+        		</section>
+      			<section>
+                	<label>Size: </label>
+       				<select>
+                    	<option value="3">Thin</option>
+                        <option value="8">Normal</option>
+                        <option value="13">Thick</option>
+          			</select>
+                    <button name="preview">Preview</button>
+                    <button name="paint">Paint</button>
+                    <button name="stop">Stop</button>
+       	 		</section>
+                <canvas id="previewCanvas">
+                </canvas>
+            </div>  
           </div>
                  
         </div>
