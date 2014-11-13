@@ -17,7 +17,7 @@
 <div class="step" id="step1">
 	<p>step 1</p>
     <fieldset>
-    	<a href="javascript:void(0);" name="next" class="button">Next</a>
+    	<a href="javascript:void(0);" name="next" class="button">Next &gt;&gt;</a>
     </fieldset>
 </div>
 <div class="step" id="step2">
@@ -29,20 +29,18 @@
           <li class="selected" value="text"><img src="Images/icon.jpg" /></li>
           <li value="shape"><img src="Images/icon.jpg" /></li>
           <li value="paint"><img src="Images/icon.jpg" /></li>
+          <li value="border"><img src="Images/icon.jpg" /></li>
         </ul>
-
         <div class="boxBody">
-          
           <div id="text" class="parent show">
             <div class="container">
-            	
                 <section>
                 	<label for="font_size">Font Size: </label>
                		<select id="font_size">
-                        <option value ="18">18</option>
+                        <option value ="20">20</option>
                         <option value ="28">28</option>
                         <option value ="48">48</option>
-                        <option value ="72">72</option>
+                        <option value ="72" selected="selected">72</option>
                     </select>
                 </section>
                 <section>
@@ -68,15 +66,52 @@
                 <div class="content">
                 	<label>Text: </label>
                     <input type="text" maxlength="18" placeholder=" Input Here" />
-                    <button name="preview">Preview</button>
-                    <button name="add">Add</button>
+                    <button name="preview"> Preview </button>
+                    <button name="add"> Add Text </button>
+                    <button name="cancel"> Cancel </button>
                 </div>
-                
             </div>
           </div>  
           
-          <div id="comments" class="parent">
-            <div  class="container">222222222222222222222222222222222222222</div>
+          <div id="shape" class="parent">
+            <div  class="container">
+            	<div class="verticalDisplay">
+               		<div class="options">
+               			<ul class="optionList">
+                      		<li name="selected" value="0"><img src="Images/1.jpg" /></li>
+                            <li value="1"><img src="Images/2.jpg" /></li>
+                            <li value="2"><img src="Images/3.jpg" /></li>
+                            <li value="3"><img src="Images/4.jpg" /></li>
+                            <li value="4"><img src="Images/1.jpg" /></li>
+                            <li value="5"><img src="Images/2.jpg" /></li>
+                            <li value="6"><img src="Images/3.jpg" /></li>
+                            <li value="7"><img src="Images/4.jpg" /></li>
+                            <li value="8"><img src="Images/1.jpg" /></li>
+                            <li value="9"><img src="Images/2.jpg" /></li>
+                            <li value="10"><img src="Images/3.jpg" /></li>
+                        </ul>
+               		</div>
+                    <div class="prev"></div>
+                    <div class="next"></div>
+       			</div>
+				<section>
+                	<label for="shape_size">Shape Size: </label>
+                	<select id="shape_size">
+                    	<option value ="small">Small</option>
+                        <option value ="middle">Middle</option>
+                        <option value ="large">Large</option>
+                    </select>
+                    <label for="shape_colour">Shape Colour: </label>
+                	<select id="shape_colour">
+                    	<option value ="red">Red</option>
+                        <option value ="yellow">Yellow</option>
+                        <option value ="blue">Blue</option>
+                        <option value ="green">Green</option>
+                    </select>
+                    <button name="add"> Add Shape </button>
+                    <button name="cancel"> Cancel </button>
+                </section>
+            </div>
           </div>
           
           <div id="paint" class="parent">
@@ -100,19 +135,41 @@
                         <option value="8">Normal</option>
                         <option value="13">Thick</option>
           			</select>
-                    <button name="preview">Preview</button>
-                    <button name="paint">Paint</button>
-                    <button name="stop">Stop</button>
+                    <button name="preview"> Preview </button>
+                    <button name="paint"> Paint </button>
+                    <button name="stop"> Stop </button>
        	 		</section>
                 <canvas id="previewCanvas">
                 </canvas>
             </div>  
           </div>
-                 
+          
+          <div id="border" class="parent">
+            <div class="container">
+         		<div class="verticalDisplay">
+               		<div class="options">
+               			<ul class="optionList">
+                      		<li name="selected" value="0"><img src="Images/1.jpg" /></li>
+                            <li value="1"><img src="Images/2.jpg" /></li>
+                            <li value="2"><img src="Images/3.jpg" /></li>
+                            <li value="3"><img src="Images/4.jpg" /></li>
+                            <li value="4"><img src="Images/1.jpg" /></li>
+                            <li value="5"><img src="Images/2.jpg" /></li>
+                            <li value="6"><img src="Images/3.jpg" /></li>
+                        </ul>
+               		</div>
+                    <div class="prev"></div>
+                    <div class="next"></div>
+       			</div>
+                <section>
+                	<button name="add"> Add Frame </button>
+                    <button name="cancel"> Cancel </button>
+                </section>
+            </div>
+          </div>  
+                
         </div>
 	</div>
-
-
     <fieldset>
         <a href="javascript:void(0);" name="previous" class="button">&lt;&lt; Prev</a>
         <a href="javascript:void(0);" name="next" class="button">Next &gt;&gt;</a>

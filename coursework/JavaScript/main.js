@@ -116,6 +116,47 @@ $(document).ready(function(e) {
 		}
 	};
 	
+	function verticalDisplay(id) {
+		var linum = $('#'+id+' .optionList li').length;
+		var itemWidth = 200;
+		var w = linum * itemWidth;
+		$('#'+id+' .optionList').css('width', w + 'px');
+			
+		var clicks = 0;
+		if (linum % 4 == 0) {
+			clicks = ( linum / 4 ) - 1;	
+		}
+		else {
+			clicks = (linum-(linum % 4))/4;
+		}
+		var count = 0; 
+		
+		$('#'+id+' .next').click(function(){
+			if (count < clicks) {
+				count ++;
+				var move = -710*count;
+				$('#'+id+' .optionList').animate({'left' : move},'slow');		
+			}
+		});
+	
+		$('#'+id+' .prev').click(function(){
+			if (count > 0) {	
+				count --;
+				var move = -710*count;
+				$('#'+id+' .optionList').animate({'left' : move},'slow');
+			}
+		});
+			
+		$('#'+id+' .prev,#'+id+' .next').hover(
+			function(){	
+				$(this).fadeTo('fast',1);
+			},
+			function(){
+				$(this).fadeTo('fast',0.7
+			);
+		});
+	}
+	
 	
 			
 	/*********************************/
@@ -199,6 +240,12 @@ $(document).ready(function(e) {
 	   //Reassign the LI
 	   $(this).addClass('selected');
 	   
+	   // set tab colour
+	   $('#tabMenu li').css('background-color','');
+	   var tab = $(this).attr('value');
+	   var colour = $('.box div#'+tab).css('background-color');
+	   $(this).css('background-color',colour);
+	   
 	   editing  = false;
 	   $('#canvas').addClass('draggable').removeClass('editable');
 	   removeEditingPrompt();
@@ -243,7 +290,7 @@ $(document).ready(function(e) {
   
   // text add
   $('.content button[name="add"]').click(function() {
-	  if($('#text p').text().length > 0 && !editing) {
+	  if(!editing) {
 		  editing = true;
 		  $('#canvas').removeClass('draggable').addClass('editable');
 		  addEditingPrompt();
@@ -261,10 +308,69 @@ $(document).ready(function(e) {
 		  removeEditingPrompt();
 	  }
   });
+  $('.content button[name="cancel"]').click(function() {
+	  if(editing) {
+		  editing = false;
+		  $('#canvas').addClass('draggable').removeClass('editable');
+		  removeEditingPrompt();
+	  }	
+  });
   	
   	
 	/*				Shape				*/
+	// vertical display
+	verticalDisplay('shape');
 
+	// shape size and start
+	$('#shape li').click(function() {
+		$('#shape li').attr('name','');
+		$('#shape li img').css('border','none');
+		$(this).attr('name','selected');
+		$(this).children('img').css('border','2px solid #000');
+	});
+	$('#shape section button[name="add"]').click(function() {
+		if(!editing) {
+			editing = true;
+		  	$('#canvas').removeClass('draggable').addClass('editable');
+		  	addEditingPrompt();
+		}
+	});
+	$('#canvas').click(function(event) {
+		if (editing && $('#tabMenu li[value="shape"]').hasClass('selected')) {
+			var x_axis = event.pageX - $(this).offset().left - ($('#text p').width()/2);
+		  	var y_axis = event.pageY - $(this).offset().top;
+			var shape = $('#shape li[name="selected"]').val();
+			var size = $('shape #shape_size').val();
+			context.strokeStyle = $('#shape #shape_colour').val();	
+			
+			switch (shape) {
+				case 1:
+					break;
+				case 2:
+					break;
+				case 3:
+					break;
+				case 4:
+					break;
+			}
+			
+			
+			
+			
+			
+			editing = false;
+		  	$('#canvas').addClass('draggable').removeClass('editable');
+		  	removeEditingPrompt();
+		}
+	});
+	$('#shape section button[name="cancel"]').click(function() {
+	  if(editing) {
+		  editing = false;
+		  $('#canvas').addClass('draggable').removeClass('editable');
+		  removeEditingPrompt();
+	  }		
+	});
+	
 	
   	/*				Paint				*/
 	
@@ -304,6 +410,58 @@ $(document).ready(function(e) {
 		removeEditingPrompt();
 	});
 	
+	
+	/*				Border				*/
+	
+	// vertical display
+	verticalDisplay('border');
+	
+	// border style and start
+	$('#border li').click(function() {
+		$('#border li').attr('name','');
+		$('#border li img').css('border','none');
+		$(this).attr('name','selected');
+		$(this).children('img').css('border','2px solid #000');
+	});
+	$('#border section button[name="add"]').click(function() {
+		if(!editing) {
+			editing = true;
+		  	$('#canvas').removeClass('draggable').addClass('editable');
+		  	addEditingPrompt();
+		}
+	});
+	$('#canvas').click(function(event) {
+		if (editing && $('#tabMenu li[value="border"]').hasClass('selected')) {
+			var x_axis = event.pageX - $(this).offset().left - ($('#text p').width()/2);
+		  	var y_axis = event.pageY - $(this).offset().top;
+			var shape = $('#border li[name="selected"]').val();
+			
+			switch (shape) {
+				case 1:
+					break;
+				case 2:
+					break;
+				case 3:
+					break;
+				case 4:
+					break;
+			}
+			
+			
+			
+			
+			editing = false;
+		  	$('#canvas').addClass('draggable').removeClass('editable');
+		  	removeEditingPrompt();
+		}
+	});
+	$('#border section button[name="cancel"]').click(function() {
+	  if(editing) {
+		  editing = false;
+		  $('#canvas').addClass('draggable').removeClass('editable');
+		  removeEditingPrompt();
+	  }		
+	});
 	
 	
 	/*********************************/

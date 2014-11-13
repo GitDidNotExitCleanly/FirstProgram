@@ -57,19 +57,20 @@ div.step {
 	margin:2px auto 0;
 }
 
-li.selected {
-	background-color:#CCC;
-	border-radius: 5px 5px 0 0;
-}
-
-.boxBody div.parent div.container {
-	height: 200px;
+#tabMenu li.selected {
+	border-radius: 10px 10px 0 0;
+	background-color:#0F3;
 }
 
 .box {
-	background-color:#CCC;
-	height: 250px;	
+	height: 270	px;	
 }
+
+.box div#text { background-color:#0F3;border-radius: 20px;height: 200px;}
+.box div#shape { background-color:#0CF;border-radius: 20px;height: 200px;}
+.box div#paint { background-color:#CC0;border-radius: 20px;height: 200px;}
+.box div#border { background-color:#9F3;border-radius: 20px;height: 200px;}
+
 #tabMenu {
 	background-color:#FFF;
 }
@@ -81,15 +82,11 @@ li.selected {
 	display:block;
 }
 
-div.step fieldset {
-	margin-top:5px;
-	text-align:center;
-	border:none;
-}
+/* text */
 
 #text {
 	text-align:center;
-	padding: 20px 0;
+	padding: 20px 0 0;
 }
 
 #text div.preview {
@@ -100,10 +97,10 @@ div.step fieldset {
 #text p {
 	display:inline-block;
 	background-color:#FFF;
-	font: 18px normal;
+	font: 72px normal;
 	color:#F00;
 	margin: 0 auto;
-	margin-top: 60px;
+	margin-top: 16px;
 }
 
 #text section {
@@ -111,13 +108,31 @@ div.step fieldset {
 	margin: 0 10px;
 }
 
-div.step fieldset {
-	margin-top:10px;	
+/* shape */
+
+#shape {
+	text-align:center;
+	padding: 20px 0 0;
 }
+
+#shape section {
+	margin: 40px auto 10px;
+}
+
+#shape select {
+	width: 100px;
+	margin-right: 20px;	
+}
+
+#shape li[name="selected"] img {
+	border: 2px solid #000;
+}
+
+/* paint */
 
 #paint {
 	text-align:center;
-	padding: 20px 0;
+	padding: 20px 0 0;
 }
 
 #paint section {
@@ -141,6 +156,7 @@ div.step fieldset {
 }
 
 #paint canvas {
+	margin-top: 15px;
 	width: 300px;
 	height: 100px;
 	background:#FFF;
@@ -160,7 +176,86 @@ div.step fieldset {
 #paint .i8{background-color:#8000FF;}
 #paint .i9{background-color:#CCCC00;}
 
+/* border */
+
+#border {
+	text-align:center;
+	padding: 20px 0 0;
+}
+
+#border li[name="selected"] img {
+	border: 2px solid #000;
+}
+
+#border section {
+	margin: 40px auto 10px;
+}
+
+
+/* vertical display */
+
+.verticalDisplay{ 
+	width:700px; 
+	margin:0 auto; 
+	position:relative; 
+	overflow:hidden;
+}
+	
+.options{ 
+	width:700px; 
+	height:120px; 
+	overflow:hidden;
+}
+	
+.optionList{ 
+	height:120px; 
+	margin: 0; 
+	padding: 0; 
+	position:absolute;
+}
+
+.optionList li{ 
+	background:#eee; 
+	margin-right:13px; 
+	padding:5px; 
+	float:left; 
+	list-style:none;
+}
+
+.optionList li img { 
+	border:none;
+}
+
+.prev,.next{ 
+	width:30px; 
+	height:50px; 
+	background: url(../Images/icon.png) no-repeat; 
+	position:absolute; 
+	top:33px; 
+	z-index:99; 
+	cursor:pointer;
+	filter:alpha(opacity=70); 
+	opacity:0.7;
+}
+
+.prev{ 
+	background-position:0 -60px; 
+	left:0px;
+}
+
+.next{ 
+	background-position:0 0; 
+	right:0px;
+}
+
 /* buttons */
+
+div.step fieldset {
+	margin-top:10px;
+	text-align:center;
+	border:none;
+}
+
 a.button {
 	color: rgba(255,255,255,1);
 	text-decoration: none;
@@ -169,29 +264,31 @@ a.button {
 	font-weight: 700;
 	font-size: 1em;
 	padding: 8px;
-	-webkit-border-radius: 8px;
-	-moz-border-radius: 8px;
 	border-radius: 8px;
-	-webkit-box-shadow: 0px 9px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
-	-moz-box-shadow: 0px 9px 0px rgba(219,31,5,1), 0px 9px 25px rgba(0,0,0,.7);
 	box-shadow: 0px 4px 0px rgba(219,31,5,1), 0px 4px 20px rgba(0,0,0,.7);
-	margin: 90px 30px;
+	margin: 90px auto;
 	width: 160px;
 	text-align: center;		
-	-webkit-transition: all .1s ease;
-	-moz-transition: all .1s ease;
-	-ms-transition: all .1s ease;
-	-o-transition: all .1s ease;
 	transition: all .1s ease;
 }
 
 #step1 a.button {
-	font-size: 1.3em;
+	margin-left: 800px;
+}
+
+#step2 a.button[name="previous"],#step3 a.button[name="previous"] {
+	margin-left: 0px;
+}
+
+#step2 a.button[name="next"] {
+	margin-left: 800px;
+}
+
+#step3 a.button[name="save"] {
+	margin-left: 750px;
 }
 
 a.button:active {
-	-webkit-box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 6px rgba(0,0,0,.9);
-	-moz-box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 6px rgba(0,0,0,.9);
 	box-shadow: 0px 3px 0px rgba(219,31,5,1), 0px 3px 6px rgba(0,0,0,.9);
 	position: relative;
 	top: 6px;
