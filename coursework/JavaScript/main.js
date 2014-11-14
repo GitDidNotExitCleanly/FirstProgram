@@ -165,11 +165,11 @@ $(document).ready(function(e) {
 	
 	// initial image display
 	
-	var MAX_WIDTH = 764;
+	var MAX_WIDTH = 650;
 	var MIN_WIDTH = 200;
 	
 	var img = new Image();
-	img.src = "./Images/test2.jpg";
+	img.src = "./Images/test3.jpg";
 	var originalWidth = 0;
 	var originalHeight = 0;
 	var step = 1;
@@ -299,7 +299,7 @@ $(document).ready(function(e) {
   $('#canvas').click(function(event) {
 	  if (editing && $('#tabMenu li[value="text"]').hasClass('selected')) {
 		  var x_axis = event.pageX - $(this).offset().left - ($('#text p').width()/2);
-		  var y_axis = event.pageY - $(this).offset().top;
+		  var y_axis = event.pageY - $(this).offset().top + ($('#text p').height()/4);
 		  context.font = $('#text p').css('font-style')+" "+$('#text p').css('font-size')+" sans-serif" ;
 		  context.fillStyle = $('#text p').css('color');
 		  context.fillText($('#text p').text(),x_axis,y_axis);
@@ -340,24 +340,111 @@ $(document).ready(function(e) {
 			var x_axis = event.pageX - $(this).offset().left - ($('#text p').width()/2);
 		  	var y_axis = event.pageY - $(this).offset().top;
 			var shape = $('#shape li[name="selected"]').val();
-			var size = $('shape #shape_size').val();
-			context.strokeStyle = $('#shape #shape_colour').val();	
+			var size = $('#shape #shape_size').val();
+			context.strokeStyle = $('#shape #shape_colour').val();
+			context.lineWidth = 4;	
 			
 			switch (shape) {
+				case 0:
+					var width = 0;
+					var height = 0;
+					if (size == 'small') {
+						width = 60;
+						height = 30;
+					}
+					else if (size == 'middle') {
+						width = 120;
+						height = 60;
+					}
+					else {
+						width = 240;
+						height = 120;
+					}
+					context.strokeRect(x_axis-(width/2),y_axis-(height/2),width,height);
+					break;
 				case 1:
+					var diameter = 0;
+					if (size == 'small') {
+						diameter = 20;
+					}
+					else if (size == 'middle') {
+						diameter = 40;
+					}
+					else {
+						diameter = 80;
+					}
+					context.beginPath();
+            		context.arc(x_axis, y_axis, diameter, 0, Math.PI * 2, true);
+   		          	context.closePath();
+					context.stroke();
 					break;
 				case 2:
+					var side = 0;
+					if (size == 'small') {
+						side = 20;
+					}
+					else if (size == 'middle') {
+						side = 40;
+					}
+					else {
+						side = 80;
+					}
+					context.moveTo(x_axis,y_axis-side);
+					context.lineTo(x_axis-1.2*side,y_axis+(side/2));
+					context.lineTo(x_axis+(1.7*3/4)*side,y_axis+(side/2));
+					context.lineTo(x_axis,y_axis-side);
+					context.stroke();
 					break;
 				case 3:
+					var width = 0;
+					var height = 0;
+					if (size == 'small') {
+						width = 50;
+						height = 25;
+					}
+					else if (size == 'middle') {
+						width = 140;
+						height = 70;
+					}
+					else {
+						width = 280;
+						height = 140;
+					}
+					context.moveTo(x_axis-0.3*width,y_axis-0.5*height);
+					context.lineTo(x_axis+0.7*width,y_axis-0.5*height);
+					context.lineTo(x_axis+0.3*width,y_axis+0.5*height);
+					context.lineTo(x_axis-0.7*width,y_axis+0.5*height);
+					context.lineTo(x_axis-0.3*width,y_axis-0.5*height);
+					context.stroke();
 					break;
 				case 4:
+					var diameter = 0;
+					if (size == 'small') {
+						diameter = 20;
+					}
+					else if (size == 'middle') {
+						diameter = 40;
+					}
+					else {
+						diameter = 80;
+					}
+					context.beginPath();
+            		context.arc(x_axis, y_axis, diameter, 0, Math.PI * 2, true);
+					context.closePath();
+					context.stroke();
+					context.beginPath();
+					context.moveTo(x_axis-0.75*diameter,y_axis-0.25*diameter);
+					context.lineTo(x_axis-0.35*diameter,y_axis-0.25*diameter);
+					context.moveTo(x_axis+0.75*diameter,y_axis-0.25*diameter);
+					context.lineTo(x_axis+0.35*diameter,y_axis-0.25*diameter);
+					context.closePath();
+					context.stroke();
+					context.beginPath();
+					context.arc(x_axis, y_axis+0.2*diameter, 0.5*diameter, 0, Math.PI, false);
+   		          	context.closePath();
+					context.stroke();
 					break;
 			}
-			
-			
-			
-			
-			
 			editing = false;
 		  	$('#canvas').addClass('draggable').removeClass('editable');
 		  	removeEditingPrompt();
@@ -446,10 +533,6 @@ $(document).ready(function(e) {
 				case 4:
 					break;
 			}
-			
-			
-			
-			
 			editing = false;
 		  	$('#canvas').addClass('draggable').removeClass('editable');
 		  	removeEditingPrompt();

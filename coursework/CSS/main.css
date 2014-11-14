@@ -10,7 +10,7 @@ body {
 	margin: 10px auto;
 	background:url(../Images/bg.jpg) no-repeat;
 	width:1024px;
-	height:600px;
+	height:450px;
 	overflow:hidden;
 	position:relative;
 }
@@ -32,7 +32,7 @@ body {
 div.step {
 	display:none;
 	width:1024px;
-	height:400px;
+	height:200px;
 	margin: 20px auto 0;
 }
 
@@ -40,13 +40,13 @@ div.step {
 
 #tabMenu {
 	margin:0;
-	padding:0 0 0 15px;
+	padding:0 15px 0 0;
 	list-style:none;
 	overflow:hidden;
 }
 
 #tabMenu li {
-	float:left;
+	float:right;
 	height:32px;
 	width:60px;
 	cursor:hand
@@ -62,14 +62,10 @@ div.step {
 	background-color:#0F3;
 }
 
-.box {
-	height: 270	px;	
-}
-
-.box div#text { background-color:#0F3;border-radius: 20px;height: 200px;}
-.box div#shape { background-color:#0CF;border-radius: 20px;height: 200px;}
-.box div#paint { background-color:#CC0;border-radius: 20px;height: 200px;}
-.box div#border { background-color:#9F3;border-radius: 20px;height: 200px;}
+.box div#text { background-color:#0F3;border-radius: 15px;height: 160px;}
+.box div#shape { background-color:#0CF;border-radius: 15px;height: 160px;}
+.box div#paint { background-color:#CC0;border-radius: 15px;height: 160px;}
+.box div#border { background-color:#9F3;border-radius: 15px;height: 160px;}
 
 #tabMenu {
 	background-color:#FFF;
@@ -86,11 +82,11 @@ div.step {
 
 #text {
 	text-align:center;
-	padding: 20px 0 0;
+	padding: 10px 0 0;
 }
 
 #text div.preview {
-	height:125px;
+	height:107px;
 	overflow:hidden;
 }
 
@@ -112,11 +108,11 @@ div.step {
 
 #shape {
 	text-align:center;
-	padding: 20px 0 0;
+	padding: 10px 0 0;
 }
 
 #shape section {
-	margin: 40px auto 10px;
+	margin: 20px auto 10px;
 }
 
 #shape select {
@@ -132,11 +128,11 @@ div.step {
 
 #paint {
 	text-align:center;
-	padding: 20px 0 0;
+	padding: 10px 0 0;
 }
 
 #paint section {
-	margin-bottom: 10px;
+	margin-bottom: 5px;
 }
 
 #paint section select {
@@ -156,10 +152,11 @@ div.step {
 }
 
 #paint canvas {
-	margin-top: 15px;
 	width: 300px;
-	height: 100px;
+	height: 90px;
 	background:#FFF;
+	margin: 0;
+	padding: 0;
 }
 
 #paint button[name="stop"] {
@@ -180,7 +177,7 @@ div.step {
 
 #border {
 	text-align:center;
-	padding: 20px 0 0;
+	padding: 10px 0 0;
 }
 
 #border li[name="selected"] img {
@@ -188,7 +185,7 @@ div.step {
 }
 
 #border section {
-	margin: 40px auto 10px;
+	margin: 20px auto 10px;
 }
 
 
@@ -203,12 +200,12 @@ div.step {
 	
 .options{ 
 	width:700px; 
-	height:120px; 
+	height:100px; 
 	overflow:hidden;
 }
 	
 .optionList{ 
-	height:120px; 
+	height:100px; 
 	margin: 0; 
 	padding: 0; 
 	position:absolute;
@@ -231,7 +228,7 @@ div.step {
 	height:50px; 
 	background: url(../Images/icon.png) no-repeat; 
 	position:absolute; 
-	top:33px; 
+	top:25px; 
 	z-index:99; 
 	cursor:pointer;
 	filter:alpha(opacity=70); 
