@@ -511,40 +511,17 @@ $(document).ready(function(e) {
 		$(this).children('img').css('border','2px solid #000');
 	});
 	$('#border section button[name="add"]').click(function() {
-		if(!editing) {
-			editing = true;
-		  	$('#canvas').removeClass('draggable').addClass('editable');
-		  	addEditingPrompt();
-		}
+		var x_axis = event.pageX - $(this).offset().left - ($('#text p').width()/2);
+		var y_axis = event.pageY - $(this).offset().top;
+		
+		var frame = new Image();
+		frame.width = canvas.width;
+		frame.height = canvas.height;
+		frame.src = $('#border li[name="selected"] img').attr('src');
+		context.drawImage(frame,0,0,frame.width,frame.height);
+		
 	});
-	$('#canvas').click(function(event) {
-		if (editing && $('#tabMenu li[value="border"]').hasClass('selected')) {
-			var x_axis = event.pageX - $(this).offset().left - ($('#text p').width()/2);
-		  	var y_axis = event.pageY - $(this).offset().top;
-			var shape = $('#border li[name="selected"]').val();
-			
-			switch (shape) {
-				case 1:
-					break;
-				case 2:
-					break;
-				case 3:
-					break;
-				case 4:
-					break;
-			}
-			editing = false;
-		  	$('#canvas').addClass('draggable').removeClass('editable');
-		  	removeEditingPrompt();
-		}
-	});
-	$('#border section button[name="cancel"]').click(function() {
-	  if(editing) {
-		  editing = false;
-		  $('#canvas').addClass('draggable').removeClass('editable');
-		  removeEditingPrompt();
-	  }		
-	});
+	
 	
 	
 	/*********************************/

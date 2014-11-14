@@ -32,8 +32,12 @@ body {
 div.step {
 	display:none;
 	width:1024px;
-	height:200px;
-	margin: 20px auto 0;
+	margin: 5px auto 0;
+}
+
+div.box {
+	height:236px;
+	border: 3px solid #FC0;
 }
 
 /* tab */
@@ -62,10 +66,10 @@ div.step {
 	background-color:#0F3;
 }
 
-.box div#text { background-color:#0F3;border-radius: 15px;height: 160px;}
-.box div#shape { background-color:#0CF;border-radius: 15px;height: 160px;}
-.box div#paint { background-color:#CC0;border-radius: 15px;height: 160px;}
-.box div#border { background-color:#9F3;border-radius: 15px;height: 160px;}
+.box div#text { background-color:#0F3;border-radius: 15px 15px 0 0;height: 160px;}
+.box div#shape { background-color:#0CF;border-radius: 15px 15px 0 0;height: 160px;}
+.box div#paint { background-color:#CC0;border-radius: 15px 15px 0 0;height: 160px;}
+.box div#border { background-color:#9F3;border-radius: 15px 15px 0 0;height: 160px;}
 
 #tabMenu {
 	background-color:#FFF;
@@ -221,6 +225,8 @@ div.step {
 
 .optionList li img { 
 	border:none;
+	height: 84px;
+	width: 154px;
 }
 
 .prev,.next{ 
