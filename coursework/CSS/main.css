@@ -4,6 +4,7 @@
 body {
 	margin: 0;
 	padding: 0;
+	background-image:url(../Images/bgColour.jpg);
 }
 
 #display {
@@ -38,8 +39,28 @@ div.step {
 div.box {
 	height:236px;
 	border: 3px solid #FC0;
+	background-color:#FFF;
 }
 
+/* step1 */
+#step1 div.box div {
+	text-align:center;
+	margin: 10px auto;
+}
+
+#step1 div.box div img {
+	width:70px;
+	display:block;
+	margin: 0 auto;
+}
+
+#step1 div.box div p {
+	margin: 0;
+	font-family:Verdana, Geneva, sans-serif;
+	font-weight:700;
+}
+
+/* step2 */
 /* tab */
 
 #tabMenu {
@@ -53,12 +74,12 @@ div.box {
 	float:right;
 	height:32px;
 	width:60px;
-	cursor:hand
 }
 
 #tabMenu li img{
 	display:block;
 	margin:2px auto 0;
+	cursor: pointer;
 }
 
 #tabMenu li.selected {
@@ -67,7 +88,7 @@ div.box {
 }
 
 .box div#text { background-color:#0F3;border-radius: 15px 15px 0 0;height: 160px;}
-.box div#shape { background-color:#0CF;border-radius: 15px 15px 0 0;height: 160px;}
+.box div#shape { background-color: #F63;border-radius: 15px 15px 0 0;height: 160px;}
 .box div#paint { background-color:#CC0;border-radius: 15px 15px 0 0;height: 160px;}
 .box div#border { background-color:#9F3;border-radius: 15px 15px 0 0;height: 160px;}
 
@@ -249,6 +270,20 @@ div.box {
 .next{ 
 	background-position:0 0; 
 	right:0px;
+}
+
+/* step3 */
+#step3 div.box div {
+	text-align:center;
+	font-family:Verdana, Geneva, sans-serif;
+	font-size: 28px;
+	font-style:italic;
+	font-weight: 700;
+}
+
+#step3 div.box div img {
+	vertical-align:middle;
+	margin-right: 50px;
 }
 
 /* buttons */
