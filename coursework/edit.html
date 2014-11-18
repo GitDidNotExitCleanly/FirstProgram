@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Edit Image</title>
+<script type="text/javascript" src="JavaScript/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="JavaScript/edit.js"></script>
+<link href="CSS/edit.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<header><img src="Images/logo.png" /></header>
+<section>
+<div id="display">
+	<canvas id="canvas" width="960" height="550"></canvas>
+</div>
+<div class="step" id="step1">
+	<div class="box">
+    	<img src="Images/step1.jpg" width="203" height="34" />
+        <div>
+        	<img src="Images/scroll.jpg"/>
+    		<p>Scroll Your Mouse to Adjust Size of This Image</p>
+     	</div>
+        <div>
+        	<img src="Images/drag.jpg"/>
+    		<p>Adjust Its Position at Anytime You Like</p>
+     	</div>  
+    </div>
+    <fieldset>
+    	<a href="javascript:void(0);" name="next" class="button">Next &gt;&gt;</a>
+    </fieldset>
+</div>
+<div class="step" id="step2">
+
+	<div class="box">
+    	<img src="Images/step2.jpg" width="203" height="34" />
+		<ul id="tabMenu">
+        	<li class="selected" value="text"><img src="Images/text.png" title="Add Text" /></li>
+          	<li value="shape"><img src="Images/shape.png" title="Add Shape" /></li>
+          	<li value="paint"><img src="Images/paint.png" title="Draw on Canvas" /></li>
+          	<li value="border"><img src="Images/frame.png" title="Add Frame" /></li>
+        </ul>
+        <div class="boxBody">
+          <div id="text" class="parent show">
+            <div class="container">
+                <section>
+                	<label for="font_size">Font Size: </label>
+               		<select id="font_size">
+                        <option value ="20">20</option>
+                        <option value ="28">28</option>
+                        <option value ="48">48</option>
+                        <option value ="72" selected="selected">72</option>
+                    </select>
+                </section>
+                <section>
+                	<label for="font_style">Font Style: </label>
+               		<select id="font_style">
+                    	<option value ="normal">Normal</option>
+                        <option value ="italic">Italic</option>
+                        <option value ="oblique">Oblique</option>
+                    </select>
+                </section>
+                <section>
+                	<label for="colour">Colour: </label>
+               		<select id="colour">
+                    	<option value ="red">Red</option>
+                        <option value ="yellow">Yellow</option>
+                        <option value ="blue">Blue</option>
+                        <option value ="green">Green</option>
+                    </select>
+                </section>
+                <div class="preview">
+                	<p>Preview</p>
+                </div>
+                <div class="content">
+                	<label>Text: </label>
+                    <input type="text" maxlength="18" placeholder=" Input Here" />
+                    <button name="preview"> Preview </button>
+                    <button name="add"> Add Text </button>
+                    <button name="cancel"> Cancel </button>
+                </div>
+            </div>
+          </div>  
+          
+          <div id="shape" class="parent">
+            <div  class="container">
+            	<div class="horizontalDisplay">
+               		<div class="options">
+               			<ul class="optionList">
+                      		<li name="selected" value="0"><img src="Images/shape0.png" /></li>
+                            <li value="1"><img src="Images/shape1.png" /></li>
+                            <li value="2"><img src="Images/shape2.png" /></li>
+                            <li value="3"><img src="Images/shape3.png" /></li>
+                            <li value="4"><img src="Images/shape4.png" /></li>
+                        </ul>
+               		</div>
+                    <div class="prev"></div>
+                    <div class="next"></div>
+       			</div>
+				<section>
+                	<label for="shape_size">Shape Size: </label>
+                	<select id="shape_size">
+                    	<option value ="small">Small</option>
+                        <option value ="middle">Middle</option>
+                        <option value ="large">Large</option>
+                    </select>
+                    <label for="shape_colour">Shape Colour: </label>
+                	<select id="shape_colour">
+                    	<option value ="red">Red</option>
+                        <option value ="yellow">Yellow</option>
+                        <option value ="blue">Blue</option>
+                        <option value ="green">Green</option>
+                    </select>
+                    <button name="add"> Add Shape </button>
+                    <button name="cancel"> Cancel </button>
+                </section>
+            </div>
+          </div>
+          
+          <div id="paint" class="parent">
+            <div  class="container">
+            	<section>
+                    <label>Color：</label>
+                    <input class="i1" type="button" value="" name="selected" />
+                    <input class="i2" type="button" value="" />
+                    <input class="i3" type="button" value="" />
+                    <input class="i4" type="button" value="" />
+                    <input class="i5" type="button" value="" />
+                    <input class="i6" type="button" value="" />
+                    <input class="i7" type="button" value="" />
+                    <input class="i8" type="button" value="" />
+                    <input class="i9" type="button" value="" />
+        		</section>
+      			<section>
+                	<label>Weight: </label>
+       				<select>
+                    	<option value="3">Thin</option>
+                        <option value="8">Normal</option>
+                        <option value="13">Thick</option>
+          			</select>
+                    <button name="preview"> Preview </button>
+                    <button name="paint"> Paint </button>
+                    <button name="stop"> Stop </button>
+       	 		</section>
+                <canvas id="previewCanvas">
+                </canvas>
+            </div>  
+          </div>
+          
+          <div id="border" class="parent">
+            <div class="container">
+         		<div class="horizontalDisplay">
+               		<div class="options">
+               			<ul class="optionList">
+                      		<li name="selected" value="0"><img src="Images/frame0.png" /></li>
+                            <li value="1"><img src="Images/frame1.png" /></li>
+                            <li value="2"><img src="Images/frame2.png" /></li>
+                            <li value="3"><img src="Images/frame3.png" /></li>
+                            <li value="4"><img src="Images/frame4.png" /></li>
+                        </ul>
+               		</div>
+                    <div class="prev"></div>
+                    <div class="next"></div>
+       			</div>
+                <section>
+                	<button name="add"> Add Frame </button>
+                </section>
+            </div>
+          </div>  
+                
+        </div>
+	</div>
+    <fieldset>
+        <a href="javascript:void(0);" name="previous" class="button">&lt;&lt; Prev</a>
+        <a href="javascript:void(0);" name="next" class="button">Next &gt;&gt;</a>
+    </fieldset>
+</div>
+<div class="step" id="step3">
+	<div class="box">
+    	<img src="Images/step3.jpg" width="203" height="34" />
+        <div>
+   	    	<img src="Images/save.jpg" width="216" height="194" />
+            Why not SAVE it ? 	
+        </div>
+    </div>
+    <fieldset>
+        <a href="javascript:void(0);" name="previous" class="button">&lt;&lt; Prev</a>
+        <a href="javascript:void(0);" name="save" class="button">Download Image</a>
+    </fieldset>
+</div>
+</section>
+<footer>
+	Author: Sheng Wang
+    <br />
+    <a href="mailto: barretwang1030@gmail.com">Email: barretwang1030@gmail.com</a>
+</footer>
+</body>
+</html>

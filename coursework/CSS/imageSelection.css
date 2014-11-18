@@ -1,0 +1,180 @@
+@charset "utf-8";
+/* CSS Document */
+
+body {
+	margin: 0;
+	padding: 0;
+	background-image:url(../Images/bgColour.jpg);
+}
+
+body > section {
+	width:1024px;
+	margin: 10px auto;
+	text-align:center;	
+}
+
+body > section > div {
+	border: 3px solid #333;
+	margin: 10px auto;
+}
+
+body > section p {
+	font-family:Verdana, Geneva, sans-serif;
+	font-size:24px;
+	font-weight:400;
+}
+
+body > section > p {
+	font-family:Verdana, Geneva, sans-serif;
+	font-size: 18px;
+	font-weight:100;
+
+} 
+
+
+/* horizontal display */
+
+.horizontalDisplay{ 
+	width:850px;
+	margin:0 auto; 
+	position:relative;
+	margin-bottom: 20px;
+}
+	
+.options{ 
+	width:760px; 
+	height:170px; 
+	overflow:hidden;
+	margin: 0 auto;
+	position:relative;
+}
+	
+.optionList{  
+	margin: 0; 
+	padding: 0; 
+	position:absolute;
+	top:0;
+	left:0;
+	overflow:hidden;
+}
+
+.optionList li{ 
+	background:#eee; 
+	margin-right:5px; 
+	padding:0px; 
+	float:left; 
+	list-style:none;
+	border-radius: 20px;
+}
+
+.optionList li img { 
+	border:none;
+	width: 250px;
+	height: 166px;
+}
+
+.prev,.next{ 
+	width:60px; 
+	height:100px; 
+	position:absolute; 
+	top:35px;
+	z-index:7; 
+	cursor:pointer;
+	filter:alpha(opacity=70); 
+	opacity:0.7;
+}
+
+.prev{ 
+	background: url(../Images/previous.jpg) no-repeat;  
+	left:-30px;
+}
+
+.next{ 
+	background: url(../Images/next.jpg) no-repeat; 
+	right:-30px;
+}
+
+#popUp {
+	width: 800px;
+	height: 500px;
+	background-color: #FFF;
+	position:absolute;
+	text-align:center;
+	border-radius: 20px;
+	z-index:9;
+	display:none;
+}
+
+#popUp #close {
+	position:absolute;
+	top:8px;
+	right:10px;
+	cursor:pointer;
+}
+
+#popUp #preview {
+	width:650px;
+	height:400px;
+	margin-top:30px;
+	margin-bottom:15px;
+}
+
+#popUp button {
+	width:130px;
+	height: 40px;
+	font:Verdana, Geneva, sans-serif;
+	font-weight:700;	
+}
+
+#background {
+	background-color: #000;
+	width:100%;
+	height:100%;
+	z-index:8;
+	filter:alpha(opacity=70); 
+	opacity:0.7;
+	display:none;
+	position:absolute;
+	top:0;
+	left:0;
+}
+
+#selectFromURL > div {
+	width:800px;
+	margin: 0 auto;
+	text-align:center;
+	vertical-align:middle;
+	margin-bottom: 20px;
+}
+
+#selectFromURL input[type="text"]{
+	width:500px;
+	height:30px;
+	font-size: 18px;
+}
+
+#selectFromURL input[type="button"]{
+	width:100px;
+	height:35px;
+}
+
+
+body header img{
+	margin-top: 30px;
+	margin-bottom:10px;
+	margin-left: 180px;
+}
+
+body footer {
+	text-align:center;
+	vertical-align:middle;
+	background:#333;
+	filter:alpha(opacity=70); 
+	opacity:0.7;
+	margin-top: 20px;
+	color:#FFF;
+}
+
+body footer a {
+	color:#FFF;
+}

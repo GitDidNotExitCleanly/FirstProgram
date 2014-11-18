@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Select Image</title>
+<script type="text/javascript" src="JavaScript/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="JavaScript/imageSelection.js"></script>
+<link href="CSS/imageSelection.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<header><img src="Images/logo.png" /></header>
+<section>
+	<div id="selectFromExist">
+    	<p> Select One ? </p>
+    	<div class="horizontalDisplay">
+			<div class="options">
+				<ul class="optionList">
+                    <li value="0"><img src="Images/shape0.png" /></li>
+                    <li value="1"><img src="Images/shape1.png" /></li>
+                    <li value="2"><img src="Images/shape2.png" /></li>
+                    <li value="3"><img src="Images/shape3.png" /></li>
+                    <li value="4 "><img src="Images/shape4.png" /></li>
+                </ul>
+			</div>
+			<div class="prev"></div>
+			<div class="next"></div>
+		</div>
+        <div id="popUp">
+        	<img src="Images/close.png" id="close"/>
+            <img src="Images/test2.jpg" id="preview" />
+            <br />
+       	  	<button> Pick This One </button>
+   	  	</div>
+        <div id="background"></div>
+    </div>
+    <p> OR </p>
+	<div id="selectFromURL">
+    	<p> Get the URL ? </p>
+    	<div>
+        	<input type="text" placeholder=" Enter Image URL Here" />
+            <input type="button" value=" Go "/>
+        </div>
+    </div>
+</section>
+<footer>
+	Author: Sheng Wang
+    <br />
+    <a href="mailto: barretwang1030@gmail.com">Email: barretwang1030@gmail.com</a>
+</footer>
+</body>
+</html>
