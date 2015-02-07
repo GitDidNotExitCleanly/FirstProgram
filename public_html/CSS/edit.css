@@ -31,9 +31,12 @@ body {
 }
 
 div.step {
-	display:none;
 	width:1024px;
 	margin: 5px auto 0;
+}
+
+div#step2,div#step3 {
+	display:none;
 }
 
 div.box {
@@ -337,10 +340,14 @@ a.button:active {
 	top: 6px;
 }
 
-body header img{
-	margin-top: 30px;
-	margin-bottom:10px;
-	margin-left: 180px;
+body header {
+	border: 3px solid #000;
+	padding: 10px;
+	margin:30px auto 10px;
+	background-color:#FF0;
+	border-radius: 15px;
+	width: 500px;
+	text-align:center;
 }
 
 body footer {

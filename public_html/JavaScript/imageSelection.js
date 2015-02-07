@@ -48,14 +48,15 @@ $(document).ready(function(e) {
 	$('#selectFromExist li').click(function() {
 		var target = $(this).attr('value');
 		$('#popUp button').attr('name',target);
-		$('#background').show();
 		var margin = ($(document).width() - $('#popUp').width())/2;
+		$('#popUp #preview').attr('src',$(this).children('img').attr('src'));
+		$('#background').show();
 		$('#popUp').css({'left' : margin,'top' : 50}).show();
 	});
 	
 	$('#popUp #close').click(function() {
 		$('#popUp').hide();
-		$('#background').hide();	
+		$('#background').hide();
 	});
 	
 	$('#popUp button').click(function() {

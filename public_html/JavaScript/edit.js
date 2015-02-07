@@ -4,8 +4,8 @@ $(document).ready(function(e) {
 	var context = canvas.getContext("2d");
 	
 	function centre() {
-		var top = (parseInt($('#canvas').parent().css('height')) - canvas.height)/2;
-		var left = (parseInt($('#canvas').parent().css('width')) - canvas.width)/2
+		var top = (505 - canvas.height)/2;
+		var left = (1024 - canvas.width)/2
 		$('#canvas').css({
 			'top' : top+'px',
 			'left' : left+'px'
@@ -172,14 +172,12 @@ $(document).ready(function(e) {
 	var url = location.search.split("=");
 	var method = url[0].split("?");
 	var val = url[1];
-	if (method == "img") {
-		//img.src = "./Images/img"+url[1]+".jpg";
+	if (method[1] == "img") {
+		img.src = "./Images/img"+url[1]+".jpg";
 	}
 	else {
-		//img.src = val;
+		img.src = val;
 	}
-	img.src = "./Images/test3.jpg";
-	
 	var originalWidth = 0;
 	var originalHeight = 0;
 	var step = 1;
@@ -197,11 +195,9 @@ $(document).ready(function(e) {
 		originalHeight = img.height;
 		canvas.width = img.width;
 		canvas.height = img.height;
-		centre();
 		$('#canvas').addClass('draggable');
 		context.drawImage(img,0,0,img.width,img.height);
-		$('#step1').show();
-		
+		centre();
 		
 		// dealing with resizable canvas
 		
@@ -399,10 +395,13 @@ $(document).ready(function(e) {
 					else {
 						side = 80;
 					}
+					
+					context.beginPath();
 					context.moveTo(x_axis,y_axis-side);
 					context.lineTo(x_axis-1.2*side,y_axis+(side/2));
 					context.lineTo(x_axis+(1.7*3/4)*side,y_axis+(side/2));
 					context.lineTo(x_axis,y_axis-side);
+					context.closePath();
 					context.stroke();
 					break;
 				case 3:
@@ -420,11 +419,14 @@ $(document).ready(function(e) {
 						width = 280;
 						height = 140;
 					}
+					
+					context.beginPath();
 					context.moveTo(x_axis-0.3*width,y_axis-0.5*height);
 					context.lineTo(x_axis+0.7*width,y_axis-0.5*height);
 					context.lineTo(x_axis+0.3*width,y_axis+0.5*height);
 					context.lineTo(x_axis-0.7*width,y_axis+0.5*height);
 					context.lineTo(x_axis-0.3*width,y_axis-0.5*height);
+					context.closePath();
 					context.stroke();
 					break;
 				case 4:
